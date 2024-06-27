@@ -38,6 +38,15 @@ The test data loader is configured using environment variables:
 |-------------------------------------------|--------------------------------------------------------------------------------------------------------------------|----------------------------------|
 | `FHIR_STORE_URL`                          | HTTP Address of the FHIR store                                                                                     | http://store:8080/fhir           |
 | `PATIENT_COUNT`                           | Number of patients to be generated.                                                                                | 100                              |
+| `START_DELAY`                             | Time in seconds before starting upload.                                                                            | 0                                |
+| `USE_BRIDGEHEAD_AUTH`                     | Use Bridgehead-specific authorization credentials to access Blaze.                                                 | false                            |
+| `KEEP_ALIVE`                              | Keep the script alive once it has done its work.                                                                   | false                            |
+
+You can use the START_DELAY variable if you want to wait for something (typically Blaze) to start before running the data load.
+
+If you set USE_BRIDGEHEAD_AUTH to true, then the script will look in /etc/bridgehead, to see if there is a file called ccp.local.conf or similar, and try to extract the authorization credentials for Blaze from there.
+
+If you set KEEP_ALIVE to true, the script will never terminate. This can be useful if you are working in a Bridgehead environemnt, where terminating containers cause the Bridgehead to shut down.
 
 ## Building
 
