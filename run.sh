@@ -5,6 +5,13 @@ if [ -n "$START_DELAY" ]; then
     sleep "$START_DELAY"
 fi
 
+if [ -n "$WAIT_FOR_BLAZE" ] && [ "$WAIT_FOR_BLAZE" = true ]; then
+    echo "Waiting for blaze..."
+    while ! curl -s ${FHIR_STORE_URL:-http://store:8080/fhir} > /dev/null; do
+        sleep 1
+    done
+fi
+
 echo Generating fake data
 bbmri-fhir-gen /app/sample -n ${PATIENT_COUNT:-100}
 
