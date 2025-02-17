@@ -1,4 +1,4 @@
-from debian:stable
+FROM debian:stable
 
 RUN apt-get -y update && apt-get -y install curl
 
@@ -16,11 +16,9 @@ RUN tar xzf blazectl-*-linux-amd64.tar.gz
 RUN mv ./blazectl /usr/local/bin/blazectl
 RUN blazectl --version
 
-RUN apt-get -y update && apt-get -y purge curl
-
 RUN mkdir -p /app/sample
 COPY run.sh /app/run.sh
 RUN chmod a+rx /app/run.sh
 
-CMD /app/run.sh
+CMD ["/app/run.sh"]
 
