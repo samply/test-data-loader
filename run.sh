@@ -8,7 +8,7 @@ fi
 if [ -n "$WAIT_FOR_BLAZE" ] && [ "$WAIT_FOR_BLAZE" = true ]; then
     echo "Waiting for blaze..."
     while ! curl -s ${FHIR_STORE_URL:-http://store:8080/fhir} > /dev/null; do
-        sleep 1
+        sleep 2
     done
 fi
 
