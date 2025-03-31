@@ -12,8 +12,8 @@ if [ -n "$WAIT_FOR_BLAZE" ] && [ "$WAIT_FOR_BLAZE" = true ]; then
     done
 fi
 
-if [ -n "$DATA_GENERATION_SEED"]; then
-    echo "Gsing seed \"$DATA_GENERATION_SEED\" for fake data generation..."
+if [ -n "$DATA_GENERATION_SEED" ]; then
+    echo "Using seed \"$DATA_GENERATION_SEED\" for fake data generation..."
     SEED_STR="--seed $DATA_GENERATION_SEED"
 else
     echo "Generating random fake data..."
