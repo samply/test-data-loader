@@ -12,8 +12,15 @@ if [ -n "$WAIT_FOR_BLAZE" ] && [ "$WAIT_FOR_BLAZE" = true ]; then
     done
 fi
 
-echo Generating fake data
-bbmri-fhir-gen /app/sample -n ${PATIENT_COUNT:-100}
+if [ -n "$DATA_GENERATION_SEED" ]; then
+    echo "Using seed \"$DATA_GENERATION_SEED\" for fake data generation..."
+    SEED_STR="--seed $DATA_GENERATION_SEED"
+else
+    echo "Generating random fake data..."
+    SEED_STR=""
+fi
+
+bbmri-fhir-gen /app/sample -n ${PATIENT_COUNT:-100} "$SEED_STR"
 
 AUTH=""
 if [ -n "$USE_BRIDGEHEAD_AUTH" ] && [ "$USE_BRIDGEHEAD_AUTH" = true ]; then

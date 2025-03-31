@@ -42,6 +42,7 @@ The test data loader is configured using environment variables:
 | `USE_BRIDGEHEAD_AUTH`                     | Use Bridgehead-specific authorization credentials to access Blaze.                                                 | false                            |
 | `KEEP_ALIVE`                              | Keep the script alive once it has done its work.                                                                   | false                            |
 | `WAIT_FOR_BLAZE`                          | Wait until blaze is ready before starting upload.                                                                  | false                            |
+| `DATA_GENERATION_SEED`                    | Seed for the initalization of the random number generator. Only integer values are allowed.                        | none                             |
 
 You can use the START_DELAY variable if you want to wait for something (typically Blaze) to start before running the data load.
 
@@ -50,6 +51,8 @@ If you set USE_BRIDGEHEAD_AUTH to true, then the script will look in /etc/bridge
 If you set KEEP_ALIVE to true, the script will never terminate. This can be useful if you are working in a Bridgehead environemnt, where terminating containers cause the Bridgehead to shut down.
 
 If you set WAIT_FOR_BLAZE to true, the script will poll blaze every second and only start the upload when it is ready.
+
+If you set DATA_GENERATION_SEED to an ingeger value, using the same value again creates the same synthetic resources.
 
 ## Building
 
